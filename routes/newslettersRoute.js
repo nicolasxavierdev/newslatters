@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const newslettersModel = require('../models/newslattersModel');
+const newslettersModel = require('../models/newslettersModel');
 
 router.get('/', async (req, res) => {
   try {
-    const newslatters = await newslettersModel.find({}).sort({ _id: 'desc' });
-    res.send(newslatters)
+    const newsletters = await newslettersModel.find({}).sort({ _id: 'desc' });
+    res.send(newsletters)
   } catch (error) {
     res.status(400).json({
       status: 'fail',
@@ -15,10 +15,10 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-  const idNewslatters = req.params.id;
+  const idNewsletter = req.params.id;
   try {
-    const newslatters = await newslettersModel.findById(idNewslatters)
-    res.send(newslatters);
+    const newsletters = await newslettersModel.findById(idNewsletter)
+    res.send(newsletters);
   } catch (error) {
     res.status(400).json({
       status: 'fail',
@@ -28,13 +28,13 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const newNewslatters = req.body;
-  const newslatters = new newslettersModel({
-    email: newNewslatters.email
+  const newNewsletter = req.body;
+  const newsletters = new newslettersModel({
+    email: newNewsletter.email
   });
   try {
-    const currentNewslatters = await newslatters.save();
-    res.send(currentNewslatters);
+    const currentNewsletter = await newsletters.save();
+    res.send(currentNewsletter);
   } catch (error) {
     res.status(400).json({
       status: 'fail',
@@ -44,11 +44,11 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-  const idNewslatters = req.params.id;
-  const newslatters = req.body;
+  const idNewsletter = req.params.id;
+  const newsletters = req.body;
   try {
-    const newslattersUpdated = await newslettersModel.findByIdAndUpdate(idNewslatters, newslatters);
-    res.send(newslattersUpdated);
+    const newsletterUpdated = await newslettersModel.findByIdAndUpdate(idNewsletter, newsletters);
+    res.send(newsletterUpdated);
   } catch (error) {
     res.status(400).json({
       status: 'fail',
@@ -58,10 +58,10 @@ router.put('/:id', async (req, res) => {
 });
 
 router.delete('/:id', async (req, res) => {
-  const idNewslatters = req.params.id;
+  const idNewsletter = req.params.id;
   try {
-    const newslatters = await newslettersModel.findByIdAndRemove(idNewslatters);
-    res.send(newslatters);
+    const newsletters = await newslettersModel.findByIdAndRemove(idNewsletter);
+    res.send(newsletters);
   } catch (error) {
     res.status(400).json({
       status: 'fail',

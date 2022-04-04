@@ -7,6 +7,6 @@ const schema = new mongoose.Schema({
   }
 });
 
-const newslattersModel = mongoose.model('newslatters', schema);
+const newslettersModel = mongoose.model('newsletters', schema);
 
-module.exports = newslattersModel;
+module.exports = newslettersModel;
